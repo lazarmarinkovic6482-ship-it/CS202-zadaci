@@ -18,8 +18,8 @@ public class HelloApplication extends Application {
         TextField textField = new TextField();
         Button button = new Button("Pošalji");
 
-        HBox forma = new HBox(10); // razmak između elemenata
-        forma.setAlignment(Pos.CENTER); // poravnanje na centar
+        HBox forma = new HBox(10); 
+        forma.setAlignment(Pos.CENTER); 
 
         forma.getChildren().addAll(label, textField, button);
 
