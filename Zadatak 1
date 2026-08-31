@@ -1,0 +1,40 @@
+1. Kreirati jednostavnu formu koristeći horizontalno poravnanje, koja sadrži: Labelu “Ime:”, TextField za unos, Dugme “Pošalji”. Postaviti razmak između elemenata i poravnanje na centar.
+package com.example.demo;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
+public class HelloApplication extends Application {
+
+
+    @Override
+    public void start(Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(),320, 240);
+        HBox forma = new HBox(10);
+        forma.setAlignment(Pos.CENTER);
+
+        Label ime = new Label("Ime:");
+        TextField unos = new TextField();
+        Button posalji = new Button("Pošalji");
+
+        forma.getChildren().addAll(ime, unos, posalji);
+
+        stage.setTitle("Hello!");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static void main(String[] args) {
+        launch();
+    }
+}
