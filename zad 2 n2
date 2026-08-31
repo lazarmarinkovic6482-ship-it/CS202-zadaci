@@ -1,29 +1,25 @@
 
 1. Implementirati generičku metodu T min(T[] niz) koja vraća najmanji element iz niza brojeva. Testirati rad funkcije u glavnom programu.
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
-
-
 public class Main {
-    public static  <T extends Comparable<T>> void sortirajOpadajuce(T[] niz){
 
-        Integer[] brojevi = { 4, 1, 3 ,6 ,61};
-        System.out.println("T_min");
+    public static <T extends Comparable<T>> T min(T[] niz) {
+        T najmanji = niz[0];
 
-        Double[] decimalniBrojevi = {3.14, 1.5, 9.8, 2.7};
-
-        Arrays.sort(niz, (a ,b) -> b.compareTo(a));
-            for (T_min : "niz") {
-            System.out.println("element" + "");
+        for (T element : niz) {
+            if (element.compareTo(najmanji) < 0) {
+                najmanji = element;
+            }
         }
 
+        return najmanji;
+    }
 
-     {
+    public static void main(String[] args) {
+        Integer[] brojevi = {5, 2, 9, 1, 7};
+        Double[] decimalniBrojevi = {3.5, 1.2, 8.4, 0.9};
 
-
-            System.out.println();
-        }
+        System.out.println("Najmanji Integer: " + min(brojevi));
+        System.out.println("Najmanji Double: " + min(decimalniBrojevi));
     }
 }
