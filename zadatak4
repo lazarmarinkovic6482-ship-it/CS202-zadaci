@@ -1,1 +1,32 @@
 1. Napraviti aplikaciju koja kreira novu nit koja ispisuje poruku svakih 500 ms ukupno 10 puta. Nakon završetka, nit se join()-uje sa glavnom niti. U main metodi pokrenuti nit i prikazati poruke pre i posle join().
+public class Main {
+
+    public static void main(String[] args) throws InterruptedException {
+
+        System.out.println("Poruka pre pokretanja niti.");
+
+        Thread nit = new Thread(() -> {
+            for (int i = 1; i <= 10; i++) {
+                System.out.println("Nova nit - poruka " + i);
+
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    System.out.println("Nit je prekinuta.");
+                    return;
+                }
+            }
+        });
+
+        // Pokretanje nove niti
+        nit.start();
+
+        System.out.println("Poruka pre join().");
+
+        // Glavna nit čeka da se nova nit završi
+        nit.join();
+
+        System.out.println("Poruka posle join().");
+    }
+}
+
