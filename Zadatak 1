@@ -38,3 +38,5 @@ public class HelloApplication extends Application {
         launch();
     }
 }
+
+NIVO 2
