@@ -1,1 +1,3 @@
 
+1. Implementirati generičku metodu T min(T[] niz) koja vraća najmanji element iz niza brojeva. Testirati rad funkcije u glavnom programu.
+
