@@ -18,12 +18,12 @@ public class Main {
             }
         });
 
-        // Pokretanje nove niti
+       
         nit.start();
 
         System.out.println("Poruka pre join().");
 
-        // Glavna nit čeka da se nova nit završi
+       
         nit.join();
 
         System.out.println("Poruka posle join().");
