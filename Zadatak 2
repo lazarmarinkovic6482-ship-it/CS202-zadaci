@@ -1,2 +1,35 @@
 1. Implementirati generičku metodu koja prima niz i ispisuje njegove elemente sortirane u opadajućem redosledu. Napisati jednostavne testove koristeći kombinacije tipova Integer, String, Double za ispisivanje rezultata u konzoli.
 
+import java.util.Arrays;
+
+public class GenericSort {
+
+    // Generička metoda za opadajuće sortiranje i ispis
+    public static <T extends Comparable<T>> void sortirajOpadajuce(T[] niz) {
+        Arrays.sort(niz, (a, b) -> b.compareTo(a));
+
+        for (T element : niz) {
+            System.out.print(element + " ");
+        }
+
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+
+        // Test sa Integer
+        Integer[] brojevi = {5, 2, 9, 1, 7};
+        System.out.print("Integer: ");
+        sortirajOpadajuce(brojevi);
+
+        // Test sa String
+        String[] tekst = {"Marko", "Ana", "Petar", "Jelena"};
+        System.out.print("String: ");
+        sortirajOpadajuce(tekst);
+
+        // Test sa Double
+        Double[] decimalniBrojevi = {3.14, 1.5, 9.8, 2.7};
+        System.out.print("Double: ");
+        sortirajOpadajuce(decimalniBrojevi);
+    }
+}
