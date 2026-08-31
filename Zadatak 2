@@ -1,0 +1,2 @@
+1. Implementirati generičku metodu koja prima niz i ispisuje njegove elemente sortirane u opadajućem redosledu. Napisati jednostavne testove koristeći kombinacije tipova Integer, String, Double za ispisivanje rezultata u konzoli.
+
