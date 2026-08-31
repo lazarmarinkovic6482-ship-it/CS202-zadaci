@@ -1,1 +1,136 @@
 1. Napraviti prozor koji prikazuje PieChart na osnovu unetih podataka (npr. raspodela ocena). Podaci se unose putem forme za unos.
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
+import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class Main extends Application {
+
+    @Override
+    public void start(Stage stage) {
+
+   
+        TextField ocena1 = new TextField();
+        TextField ocena2 = new TextField();
+        TextField ocena3 = new TextField();
+        TextField ocena4 = new TextField();
+        TextField ocena5 = new TextField();
+
+        ocena1.setPromptText("Broj ocena 1");
+        ocena2.setPromptText("Broj ocena 2");
+        ocena3.setPromptText("Broj ocena 3");
+        ocena4.setPromptText("Broj ocena 4");
+        ocena5.setPromptText("Broj ocena 5");
+
+        Button prikazi = new Button("Prikaži PieChart");
+
+  
+        GridPane forma = new GridPane();
+        forma.setPadding(new Insets(20));
+        forma.setHgap(10);
+        forma.setVgap(10);
+        forma.setAlignment(Pos.CENTER);
+
+        forma.add(new Label("Ocena 1:"), 0, 0);
+        forma.add(ocena1, 1, 0);
+
+        forma.add(new Label("Ocena 2:"), 0, 1);
+        forma.add(ocena2, 1, 1);
+
+        forma.add(new Label("Ocena 3:"), 0, 2);
+        forma.add(ocena3, 1, 2);
+
+        forma.add(new Label("Ocena 4:"), 0, 3);
+        forma.add(ocena4, 1, 3);
+
+        forma.add(new Label("Ocena 5:"), 0, 4);
+        forma.add(ocena5, 1, 4);
+
+        forma.add(prikazi, 1, 5);
+
+    
+        prikazi.setOnAction(e -> {
+
+            try {
+                int broj1 = Integer.parseInt(ocena1.getText());
+                int broj2 = Integer.parseInt(ocena2.getText());
+                int broj3 = Integer.parseInt(ocena3.getText());
+                int broj4 = Integer.parseInt(ocena4.getText());
+                int broj5 = Integer.parseInt(ocena5.getText());
+
+                if (broj1 < 0 || broj2 < 0 || broj3 < 0 ||
+                    broj4 < 0 || broj5 < 0) {
+
+                    prikaziGresku("Broj ocena ne može biti negativan.");
+                    return;
+                }
+
+            
+                PieChart pieChart = new PieChart();
+
+                pieChart.getData().add(
+                    new PieChart.Data("Ocena 1", broj1)
+                );
+
+                pieChart.getData().add(
+                    new PieChart.Data("Ocena 2", broj2)
+                );
+
+                pieChart.getData().add(
+                    new PieChart.Data("Ocena 3", broj3)
+                );
+
+                pieChart.getData().add(
+                    new PieChart.Data("Ocena 4", broj4)
+                );
+
+                pieChart.getData().add(
+                    new PieChart.Data("Ocena 5", broj5)
+                );
+
+                pieChart.setTitle("Raspodela ocena");
+                pieChart.setLabelsVisible(true);
+
+                // Novi prozor sa grafikonom
+                Stage chartStage = new Stage();
+                VBox root = new VBox(pieChart);
+                root.setPadding(new Insets(10));
+
+                Scene scene = new Scene(root, 600, 500);
+
+                chartStage.setTitle("Raspodela ocena");
+                chartStage.setScene(scene);
+                chartStage.show();
+
+            } catch (NumberFormatException ex) {
+                prikaziGresku("Unesite cele brojeve za broj ocena.");
+            }
+        });
+
+        VBox root = new VBox(10, forma);
+        root.setAlignment(Pos.CENTER);
+
+        Scene scene = new Scene(root, 400, 400);
+
+        stage.setTitle("Unos ocena");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void prikaziGresku(String poruka) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Greška");
+        alert.setHeaderText(null);
+        alert.setContentText(poruka);
+        alert.showAndWait();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
